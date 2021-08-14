@@ -4,10 +4,10 @@ node ('test-appserver'){
         /* Let's make sure we have the repository cloned to our workspace */
        checkout scm
     }  
-    stage('SAST'){
+   /* stage('SAST'){
         build 'SECURITY-SAST-SNYK'
     }
-
+    */
     
     stage('Build-and-Tag') {
     /* This builds the actual image; synonymous to
@@ -20,20 +20,21 @@ node ('test-appserver'){
             app.push("latest")
         			}
          }
+    /*
     stage('SECURITY-IMAGE-SCANNER'){
         build 'SECURITY-IMAGE-SCANNER-AQUAMICROSCANNER'
     }
-  
+  */
     
     stage('Pull-image-server') {
     
          sh "docker-compose down"
          sh "docker-compose up -d"	
       }
-    
+    /*
     stage('DAST')
         {
         build 'SECURITY-DAST-OWASP_ZAP'
         }
- 
+    */
 }
